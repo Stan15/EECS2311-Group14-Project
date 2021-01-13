@@ -34,7 +34,7 @@ public class Convert {
 	
 	
 	/**
-	 * pre each new string in a single bar must be separated by at least a new line
+	 * Per each new string in a single bar must be separated by at least a new line
 	 * the strings must be either in the forward or backward order E B G D A E
 	 * @param currentBar
 	 * @throws IOException
@@ -64,7 +64,7 @@ public class Convert {
 				fileLines.set(currentLineIdx, stringBarInfo[2]);
 			}
 			
-			//evaluate the info which you recieved from parsing the line like determine if youre at the end of the bar and set goToNextBar to true
+			//evaluate the info which you received from parsing the line like determine if youre at the end of the bar and set goToNextBar to true
 			fileLines.set(currentLineIdx, stringBarInfo[2]);	//set the line to the new line created where the parsed info is deleted so the next bar can be more easily accessed
 			//set the info evaluated () be the "previous" info evaluated.
 			previousStringBarInfo = stringBarInfo;
