@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Convert {
 	ArrayList<String> fileLines = new ArrayList<>();
@@ -13,8 +14,8 @@ public class Convert {
 		// TODO Auto-generated method stub
 		try {
 			Convert convert = new Convert();
-			convert.readLines("passenger - a thousand matches tabs.txt");
-			convert.readMyFile(0);
+			convert.readLines("");
+			//convert.readMyFile(0);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -24,11 +25,15 @@ public class Convert {
 	public void readLines(String file) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(file));
 		while (true) {
-			String line = reader.readLine().trim();
+			String line = reader.readLine();
 			if (line==null)
 				return;
-			if (line!="")
-				fileLines.add(line);
+			if (!line.equals("")) {
+				line = line.trim();
+				   if(!line.equals("")) {
+						fileLines.add(line);   
+				   }
+			}
 		}
 	}
 	
