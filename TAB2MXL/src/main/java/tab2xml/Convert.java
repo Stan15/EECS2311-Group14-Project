@@ -13,9 +13,9 @@ public class Convert {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
-			Convert convert = new Convert();
-			convert.readLines("");
-			//convert.readMyFile(0);
+			Main convert = new Main();
+			convert.readLines("passenger - a thousand matches tabs.txt");
+			convert.parseTabInfo();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -25,11 +25,11 @@ public class Convert {
 	public void readLines(String file) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(file));
 		while (true) {
-			String line = reader.readLine();
+			String line = reader.readLine(); //I removed trim() was here(when it is null, it makes nullpointerexception)
 			if (line==null)
 				return;
 			if (!line.equals("")) {
-				line = line.trim();
+				line = line.trim(); //I added trim here to avoid nullPointerexception
 				   if(!line.equals("")) {
 						fileLines.add(line);   
 				   }
