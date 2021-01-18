@@ -18,7 +18,7 @@ public class Main {
 		System.out.println("This is a change to the file to deemo git pulling");
 		try {
 			Main convert = new Main();
-			convert.readLines("passenger - a thousand matches tabs.txt");
+			convert.readLines("guitar - a thousand matches by passenger");
 			convert.parseTabInfo();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -43,10 +43,12 @@ public class Main {
 	
 	
 	/**
-	 * Per each new string in a single bar must be separated by at least a new line
+	 * @pre each new string in a single bar must be separated by at least a new line
 	 * the strings must be either in the forward or backward order E B G D A E
 	 * each bar must end on the same line it started
-	 * lets call each bunch of bars arranged right next to each other horizontally a bar bunch
+	 * Terminology: 
+	 * lineName - if a line is part of a bar, the line name is the key for that line in the bar. e.g, the first line name in a bar is E, second is G, third is 
+	 * bar group - this is a group of bars connected together horizontally
 	 * @param currentBar
 	 * @throws IOException
 	 */
@@ -56,27 +58,32 @@ public class Main {
 		int currentBarNum = 0;
 		for (int fileLineIdx=0; fileLineIdx<this.fileLines.size(); fileLineIdx++) {
 			
-			HashMap<String, String> currLineInfo = getLineInfo(this.fileLines.get(fileLineIdx), prevLineInfo, currentBarNum);	//generate the corresponding data from this line up to just before the next bar (if another bar is on the same line) and tell me the type of information recieved(a bar with notes or other types) string represented by that line, all the music info of that line, and a new line containing none of the data that was just parsed (i.e, delete the content of the line you just parsed, up to the next bar(if another bar is on the same line), so that the next bar can be easily reached). returns null if the information on the line doesnt make sense
+			HashMap<String, String> currLineInfo = getLineInfo(this.fileLines.get(fileLineIdx), prevLineInfo, currentBarNum);	//generate the corresponding data for the current line and tell me the type of information recieved(a bar with notes or other types) string represented by that line, all the music info of that line, and a new line containing none of the data that was just parsed (i.e, delete the content of the line you just parsed, up to the next bar(if another bar is on the same line), so that the next bar can be easily reached). returns null if the information on the line doesnt make sense
 			String lineInfoType = currLineInfo.get("type");
-			if (lineInfoType=="bar" && currLineInfo.get("barEnded")=="true")	//if we just finished reading the bars that appear in the first bar bunch
-				currentBarNum = Integer.valueOf(currLineInfo.get("enndingBar"));
+			
+			//say we have on the first bar group 3 bars. since we are reading line by line, we will have to read it as bar1-line1, bar2-line1, bar3-line1; bar1-line2, bar2-line2, bar3-line2, etc. since bars 1-3 are in the same bar group.
+			//We go back and forth. when we end the bar, however, we would like to know what the last bar number in the bar group is (so we can tell the next bar group that it is starting from bar 4).
+			if (lineInfoType=="bar" && currLineInfo.get("barGroupEnded")=="true")	//if we just finished reading the bars that appear in the first bar group
+				currentBarNum = Integer.valueOf(currLineInfo.get("enndingBar"));	//the bar number of the last bar in the bar group
+			
+			
 			
 			//if this line doesn't make sense, move to the next (empty lines don't make sense too)
-			if (lineInfoType=="meaningless")
+			if (lineInfoType=="text")
 				continue;
 			
 			//if there's an instruction line in the middle of a bar, it is an error
-			if (lineInfoType=="instr" && !(prevLineInfo.get("type")=="bar" && currLineInfo.get("barEnded")=="false"))
+			if (lineInfoType=="instr" && !(prevLineInfo.get("type")=="bar" && currLineInfo.get("barGroupEnded")=="false"))
 				throw new InvalidTabFormatException("Invalid tablature format at line "+ (fileLineIdx+1));
 			
 			//making guitar tabs work in reverse by detecting which is the lower e and upper E
-			if (lineInfoType=="bar" && prevLineInfo.get("type")=="bar" && prevLineInfo.get("bar-line-name")=="?") {
-				 if (currLineInfo.get("bar-line-name")=="B")
-					 prevLineInfo.put("bar-line-name", "e");
-				 else if (currLineInfo.get("bar-line-name")=="B")
-					 prevLineInfo.put("bar-line-name", "E");
-				 parseLineInfo(prevLineInfo);
-			}
+			//if (lineInfoType=="bar" && prevLineInfo.get("type")=="bar" && prevLineInfo.get("bar-line-name")=="?") {
+			//	 if (currLineInfo.get("bar-line-name")=="B")
+			//		 prevLineInfo.put("bar-line-name", "e");
+			//	 else if (currLineInfo.get("bar-line-name")=="B")
+			//		 prevLineInfo.put("bar-line-name", "E");
+			//	 parseLineInfo(prevLineInfo);
+			//}
 			parseLineInfo(currLineInfo);
 		}
 
@@ -85,8 +92,8 @@ public class Main {
 	
 	HashMap<String, String> getLineInfo(String line, HashMap<String, String> prevLineInfo, int currentBarNum) {
 		HashMap<String, String> lineInfo = new HashMap<String, String>();
-		Set<Character> symbolsSet = new HashSet<Character>();
-		Set<Character> lineNameSet = new HashSet<Character>();
+		Set<Character> symbolsSet = new HashSet<Character>();	//set of all possible symbols we can find in a tablature txt file
+		Set<Character> lineNameSet = new HashSet<Character>(); //set of all 
 		Set<Character> barSymbolsSet = new HashSet<Character>();
 		Set<Character> instrSymbolsSet = new HashSet<Character>();
 		
@@ -121,7 +128,6 @@ public class Main {
 	      
 	      //if there's a double "|" e.g "||", ignore the duplicate ones (don't count it toward distance)
 	      if (symbol=='|' && prevSymb=='|') {
-	    	  prevSymb = symbol;
 	    	  continue;
 	      }
 	      
