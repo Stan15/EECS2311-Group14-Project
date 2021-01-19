@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-
+// testing if i push properly
 public class Main {
 	ArrayList<String> fileLines = new ArrayList<>();
 	String[][] parsedInfo;	//String[bar][info]
