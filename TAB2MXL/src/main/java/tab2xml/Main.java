@@ -18,6 +18,8 @@ public class Main {
 		System.out.println("This is a change to the file to deemo git pulling");
 		System.out.println("This is another change in case my team mates already pulled the first change");
 		System.out.println("This is a third change in case my team mates already pulled the first change");
+		System.out.println("This is a 4th change in case my team mates already pulled the first change");
+
 		try {
 			Main convert = new Main();
 			convert.readLines("guitar - a thousand matches by passenger");
