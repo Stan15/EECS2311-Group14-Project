@@ -21,6 +21,8 @@ public class Main {
 		System.out.println("This is a 4th change in case my team mates already pulled the first change");
 		System.out.println("This is a 5th change in case my team mates already pulled the first change");
 		System.out.println("This is a 5th change in case my team mates already pulled the first change");
+		System.out.println("testing");
+		
 		try {
 			Main convert = new Main();
 			convert.readLines("guitar - a thousand matches by passenger");
