@@ -15,13 +15,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("This is a change to the file to deemo git pulling");
-		System.out.println("This is another change in case my team mates already pulled the first change");
-		System.out.println("This is a third change in case my team mates already pulled the first change");
-		System.out.println("This is a 4th change in case my team mates already pulled the first change");
-		System.out.println("This is a 5th change in case my team mates already pulled the first change");
-		System.out.println("This is a 5th change in case my team mates already pulled the first change");
-		System.out.println("testing");
+
 		
 		try {
 			Main convert = new Main();
