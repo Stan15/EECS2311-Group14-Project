@@ -16,6 +16,7 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("This is a change to the file to deemo git pulling");
+		System.out.println("This is another change in case my team mates already pulled the first change");
 		try {
 			Main convert = new Main();
 			convert.readLines("guitar - a thousand matches by passenger");
