@@ -18,7 +18,7 @@ public class Main2 {
 	}
 
 	private void readFile() {
-		Scanner sc = null; 
+		Scanner sc = null;
 		try {
 			sc = new Scanner(inputFile);	
 			while(sc.hasNextLine()){
