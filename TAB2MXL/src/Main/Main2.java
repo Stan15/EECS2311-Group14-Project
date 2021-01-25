@@ -39,7 +39,12 @@ public class Main2 {
 	
 		for (int i = 0; i < temp.size(); i++) {
 			temp = new ArrayList<>(Arrays.asList(((String) temp.get(i))));
-			
+			if(temp.get(i).length() == 0) {
+				continue;
+			}
+			else {
+				
+			}
 			
 			
 		}
