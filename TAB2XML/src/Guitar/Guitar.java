@@ -166,10 +166,12 @@ public class Guitar {
                 "        <key>\n" +
                 "          <fifths>"+ fifths +"</fifths>\n" +
                 "          </key>\n" +
-                "        <time>\n" +
-                "          <beats>" + beats +"</beats>\n" +
-                "          <beat-type>" + beat_type + "</beat-type>\n" +
-                "          </time>\n" +
+               // "        <time>\n" +
+               // "          <beats>" + beats +"</beats>\n" +
+               // "          <beat-type>" + beat_type + "</beat-type>\n" +
+               // "          </time>\n" +
+               //I think it's not essential part because the program runs well without it.
+               //And also we don't know time beat with input tablatrue
                 "        <clef>\n" +
                 "          <sign>" + sign +"</sign>\n" +
                 "          <line>" + 5 +"</line>\n" +
