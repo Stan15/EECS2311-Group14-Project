@@ -1,12 +1,30 @@
 package Guitar;
 
+import java.io.File;
+import java.io.FileWriter;
+
 public class Guitar {
 	public Guitar(){
     }
 
     public static void main(String[] args) {
         Guitar aa = new Guitar();
-        System.out.println(aa.makeScript());
+        String testScript = aa.makeScript();
+        String fileName = "test.musicxml";
+        try {
+        	File file = new File(fileName);
+        	FileWriter fw = new FileWriter(file, true);
+        	
+        	fw.write(testScript);
+        	fw.flush();
+        	
+        	fw.close();
+        }
+        catch(Exception e){	
+        	e.printStackTrace();
+        }
+        //I tried to make musicxml format file.
+        //If you run this file in music app, it runs.
     }
 
     public String makeScript() {
