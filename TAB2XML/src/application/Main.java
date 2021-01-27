@@ -16,7 +16,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			VBox root = new VBox();
-			root.setId("root");
+			root.setId("rootiiiii");
 			Scene scene = new Scene(root,600,480);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
