@@ -10,7 +10,7 @@ public class Instructions {
 	
 	
 	//gives all characters that can be found in all bar types.
-	private HashSet<Character> getBarInstructionSet() {
+	private static HashSet<Character> getBarInstructionSet() {
 		Character[] barInstructionSet = {
 				'e','b','g','d','a','h','t',
 				'/','\\','(',')'
